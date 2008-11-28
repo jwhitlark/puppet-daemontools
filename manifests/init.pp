@@ -12,6 +12,7 @@ class daemontools {
     case $operatingsystem {
         gentoo: { include daemontools::gentoo }
         centos: { include daemontools::centos }
+        debian: { include daemontools::debian }
         default: { include daemontools::base }
     }
 
@@ -45,4 +46,10 @@ class daemontools::gentoo inherits daemontools::base {
         require => Package[daemontools],
     }
 
+}
+
+class daemontools::debian inherits daemontools::base {
+    package {"daemontools-run":
+      ensure => installed,
+    }
 }
